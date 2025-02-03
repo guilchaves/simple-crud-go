@@ -2,15 +2,23 @@ package main
 
 import (
 	"go-gin-api/controller"
+	"go-gin-api/db"
+	"go-gin-api/repository"
+	"go-gin-api/usecase"
 
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
-
 	server := gin.Default()
+	dbConnection, err := db.ConnectDB()
+    if err != nil {
+        panic(err)
+    }
 
-	ProductController := controller.NewProductController()
+    ProductRepository := repository.NewProductRepository(dbConnection)
+	ProductUseCase := usecase.NewProductUseCase(ProductRepository)
+	ProductController := controller.NewProductController(ProductUseCase)
 
 	server.GET("/ping", func(ctx *gin.Context) {
 		ctx.JSON(200, gin.H{
@@ -18,7 +26,7 @@ func main() {
 		})
 	})
 
-    server.GET("/products", ProductController.GetProducts)
+	server.GET("/products", ProductController.GetProducts)
 
 	server.Run(":8080")
 }
