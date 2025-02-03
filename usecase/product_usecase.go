@@ -3,15 +3,15 @@ package usecase
 import "go-gin-api/model"
 
 // TODO: Implement the product usecase
-type productUsecase struct {
+type ProductUsecase struct {
     //Repository
 }
 
-func NewProductUseCase() productUsecase{
-    return productUsecase{}
+func NewProductUseCase() ProductUsecase{
+    return ProductUsecase{}
 }
 
 //TODO
-func (pu *productUsecase) GetProducts() ([]model.Product, error){
+func (pu *ProductUsecase) GetProducts() ([]model.Product, error){
     return []model.Product{}, nil
 }
