@@ -2,22 +2,31 @@
 
 A simple CRUD application written in Golang and Gin framework using clean architecture.
 
-Endpoints by far:
+#### How to run
+```docker
+docker build -t go-api-gin .
+```
+```bash
+docker compose up -d
+```
 
-GetProducts
+The application will serve on ```127.0.0.1:8080```
+#### Endpoints:
+
+_GetProducts_
 ```bash
 GET /products
 ```
-GetById
+_GetById_
 ```bash
 GET /product/:id
 ```
-CreateProduct
+_CreateProduct_
 ```bash
 POST  /product
 ```
 
-TODO:
+#### TODO
 
 - Add slog
 - Add swagger
